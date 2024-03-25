@@ -1,0 +1,225 @@
+[gd_scene load_steps=25 format=3 uid="uid://dr61h3xvy4lbk"]
+
+[ext_resource type="Texture2D" uid="uid://c4csxt2t2oqnq" path="res://assets/sprites/player/player.png" id="1_gqisq"]
+[ext_resource type="Script" path="res://objects/player/player.gd" id="1_tx0r1"]
+[ext_resource type="Texture2D" uid="uid://co7m3rnm5188v" path="res://assets/particles/hashtag.png" id="3_g8cts"]
+
+[sub_resource type="Gradient" id="Gradient_lg3gt"]
+offsets = PackedFloat32Array(0, 0.2, 0.3, 0.7, 0.9, 1)
+colors = PackedColorArray(0.819608, 0.878431, 0.819608, 1, 0.819608, 0.878431, 0.819608, 1, 0.498039, 0.8, 0.709804, 1, 0.498039, 0.8, 0.709804, 1, 0.317647, 0.360784, 0.360784, 1, 0.317647, 0.360784, 0.360784, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5m4p0"]
+gradient = SubResource("Gradient_lg3gt")
+
+[sub_resource type="Curve" id="Curve_4pemk"]
+max_value = 1.2
+_data = [Vector2(0.0133333, 0.538462), 0.0, 3.95604, 0, 0, Vector2(0.253333, 1.2), 0.0, -2.96703, 0, 0, Vector2(0.433333, 1.0022), 0.0, 0.0, 0, 0, Vector2(0.993333, 0), -3.95605, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_83hjn"]
+curve = SubResource("Curve_4pemk")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_be306"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(2, 1, 1)
+angular_velocity_min = -45.0
+angular_velocity_max = 45.0
+gravity = Vector3(0, -4, 0)
+scale_curve = SubResource("CurveTexture_83hjn")
+color_ramp = SubResource("GradientTexture1D_5m4p0")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_odkwj"]
+atlas = ExtResource("1_gqisq")
+region = Rect2(0, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cffp6"]
+atlas = ExtResource("1_gqisq")
+region = Rect2(16, 48, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31kl7"]
+atlas = ExtResource("1_gqisq")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_878ko"]
+atlas = ExtResource("1_gqisq")
+region = Rect2(48, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j63fk"]
+atlas = ExtResource("1_gqisq")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mi761"]
+atlas = ExtResource("1_gqisq")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qf28b"]
+atlas = ExtResource("1_gqisq")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kdxre"]
+atlas = ExtResource("1_gqisq")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqajq"]
+atlas = ExtResource("1_gqisq")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfxnr"]
+atlas = ExtResource("1_gqisq")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vx16g"]
+atlas = ExtResource("1_gqisq")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jxwkk"]
+atlas = ExtResource("1_gqisq")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h54p2"]
+atlas = ExtResource("1_gqisq")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evm45"]
+atlas = ExtResource("1_gqisq")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pv26e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_odkwj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cffp6")
+}],
+"loop": true,
+"name": &"fall",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31kl7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_878ko")
+}],
+"loop": false,
+"name": &"fall_start",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": SubResource("AtlasTexture_j63fk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mi761")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qf28b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kdxre")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqajq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfxnr")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vx16g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jxwkk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h54p2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evm45")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtbmg"]
+size = Vector2(6, 10)
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_tx0r1")
+speed = 132.0
+accel = 3000.0
+air_accel = 1280.0
+friction = 1500.0
+air_friction = 480.0
+jump_speed = 280.0
+gravity = 1200.0
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_be306")
+texture = ExtResource("3_g8cts")
+randomness = 0.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_pv26e")
+animation = &"fall_start"
+autoplay = "idle"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://assets/sprites/player/",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://assets/sprites/player/player.ase"
+}
+metadata/_aseprite_wizard_interface_config_ = {
+"layer_section": true,
+"output_section": true,
+"slice_section": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_mtbmg")
+
+[node name="CoyoteTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="BufferTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -16)
+limit_smoothed = true
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_right_margin = 0.1
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_animation_finished"]
+[connection signal="timeout" from="CoyoteTimer" to="." method="_coyote_timeout"]
+[connection signal="timeout" from="BufferTimer" to="." method="_buffer_timeout"]

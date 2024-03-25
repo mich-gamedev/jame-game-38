@@ -1,0 +1,147 @@
+[gd_scene load_steps=18 format=3 uid="uid://bjkya8a3rwmfa"]
+
+[ext_resource type="Texture2D" uid="uid://cv1tftrbjkglk" path="res://assets/sprites/snailexplorer/snail_explorer.png" id="1_pgdit"]
+[ext_resource type="Script" path="res://objects/snail_explorer/snail_explorer.gd" id="1_rl0ev"]
+[ext_resource type="Texture2D" uid="uid://nwbhjs3dt6pv" path="res://assets/particles/asterisk.png" id="2_vhs3b"]
+
+[sub_resource type="Gradient" id="Gradient_r4mrn"]
+offsets = PackedFloat32Array(0, 0.2, 0.3, 0.7, 0.9, 1)
+colors = PackedColorArray(0.819608, 0.878431, 0.819608, 1, 0.819608, 0.878431, 0.819608, 1, 0.498039, 0.8, 0.709804, 1, 0.498039, 0.8, 0.709804, 1, 0.317647, 0.360784, 0.360784, 1, 0.317647, 0.360784, 0.360784, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kxrsx"]
+gradient = SubResource("Gradient_r4mrn")
+
+[sub_resource type="Curve" id="Curve_wyy0a"]
+max_value = 1.2
+_data = [Vector2(0.0133333, 0.538462), 0.0, 3.95604, 0, 0, Vector2(0.253333, 1.2), 0.0, -2.96703, 0, 0, Vector2(0.433333, 1.0022), 0.0, 0.0, 0, 0, Vector2(0.993333, 0), -3.95605, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_2xx2e"]
+curve = SubResource("Curve_wyy0a")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_blpa2"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(2, 1, 1)
+angular_velocity_min = -45.0
+angular_velocity_max = 45.0
+gravity = Vector3(0, -4, 0)
+scale_curve = SubResource("CurveTexture_2xx2e")
+color_ramp = SubResource("GradientTexture1D_kxrsx")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d7u1m"]
+atlas = ExtResource("1_pgdit")
+region = Rect2(0, 0, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls1ce"]
+atlas = ExtResource("1_pgdit")
+region = Rect2(28, 0, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qx2g8"]
+atlas = ExtResource("1_pgdit")
+region = Rect2(56, 0, 28, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3jb78"]
+atlas = ExtResource("1_pgdit")
+region = Rect2(84, 0, 28, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wtycd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d7u1m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ls1ce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qx2g8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3jb78")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5jbp2"]
+size = Vector2(21, 12)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g43y2"]
+size = Vector2(2, 2)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4rn7b"]
+radius = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_f56sh"]
+radius = 1.0
+
+[node name="SnailExplorer" type="CharacterBody2D"]
+collision_layer = 5
+collision_mask = 5
+collision_priority = 128.0
+script = ExtResource("1_rl0ev")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, -2)
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_blpa2")
+texture = ExtResource("2_vhs3b")
+randomness = 0.5
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(0, -12)
+sprite_frames = SubResource("SpriteFrames_wtycd")
+animation = &"new_animation"
+autoplay = "new_animation"
+frame_progress = 0.966323
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://assets/sprites/snailexplorer/snail_explorer.ase"
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -6)
+shape = SubResource("RectangleShape2D_5jbp2")
+one_way_collision = true
+
+[node name="FloorCheck" type="Area2D" parent="."]
+position = Vector2(-13, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorCheck"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_g43y2")
+
+[node name="WallCheck" type="Area2D" parent="."]
+position = Vector2(-13, -7)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallCheck"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_g43y2")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-12, -3)
+shape = SubResource("CircleShape2D_4rn7b")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(13, -3)
+shape = SubResource("CircleShape2D_f56sh")
+
+[connection signal="body_exited" from="FloorCheck" to="." method="_floor_check"]
+[connection signal="body_entered" from="WallCheck" to="." method="_floor_check"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

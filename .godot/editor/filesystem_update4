@@ -1,0 +1,12 @@
+res://main.tscn
+res://objects/snail_explorer/snail_explorer.tscn
+res://objects/player/player.tscn
+res://objects/document/document.tscn
+res://scripts/components/Interactible.gd
+res://scripts/singletons/PlayerStats.gd
+res://objects/document/document.gd
+res://objects/snail_explorer/snail_explorer.gd
+res://objects/document/Droppable.gd
+res://objects/document/Throwable.gd
+res://objects/player/player.gd
+res://objects/floppy_disk/floppy_disk.tscn

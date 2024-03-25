@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cty1tsmgls3x0"]
+
+[ext_resource type="Texture2D" uid="uid://dwxy2rb0iyjc0" path="res://assets/sprites/floppydisk/floppy_disk.png" id="1_8ind6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vrwdh"]
+
+[node name="FloppyDisk" type="Area2D"]
+
+[node name="FloppyDisk" type="Sprite2D" parent="."]
+position = Vector2(8, 8)
+texture = ExtResource("1_8ind6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(8, 8)
+shape = SubResource("RectangleShape2D_vrwdh")
