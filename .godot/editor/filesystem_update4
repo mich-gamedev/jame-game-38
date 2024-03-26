@@ -8,3 +8,8 @@ res://levels/1.tscn
 res://objects/player/smokes/basic.tscn
 res://objects/windog/windog.tscn
 res://objects/player/smokes/basic.gd
+res://objects/player/player.gd
+res://scripts/components/queue_free_on_death.gd
+res://scripts/components/Health.gd
+res://scripts/components/Hurtbox.gd
+res://scripts/components/Hitbox.gd

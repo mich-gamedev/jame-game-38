@@ -6,9 +6,8 @@ class_name Hitbox
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	area_entered.connect(_area_entered)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _area_entered(area: Area2D)-> void:
+	if area is Hurtbox and team == area.team:
+		health.damage(area.damage)

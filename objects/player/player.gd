@@ -75,6 +75,7 @@ func _physics_process(delta: float) -> void:
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("action_1") and PlayerStats.player_has_wand and !PlayerStats.player_item and can_fire:
 		can_fire = false
+		velocity += global_position.direction_to(get_global_mouse_position()) * Vector2(-160, -240)
 		var bullet: CharacterBody2D = preload("res://objects/player/smokes/basic.tscn").instantiate() as CharacterBody2D
 		get_tree().current_scene.add_child(bullet)
 		bullet.global_position = wand.global_position

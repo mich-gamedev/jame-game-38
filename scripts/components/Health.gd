@@ -12,6 +12,7 @@ signal damaged(amount)
 signal healed(amount)
 
 func damage(amount: float) -> float:
+	print("%s took damage" % owner.name)
 	damaged.emit(amount)
 	health -= amount
 	health = clamp(health, 0, max_health)

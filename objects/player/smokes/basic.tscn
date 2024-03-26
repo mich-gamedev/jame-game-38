@@ -38,11 +38,12 @@ radius = 1.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 4
+collision_mask = 20
 script = ExtResource("1_tuamd")
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("2_ep7vv")
+damage = 0.75
 team = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
@@ -53,8 +54,7 @@ process_mode = 1
 amount = 100
 process_material = SubResource("ParticleProcessMaterial_47spn")
 texture = ExtResource("1_bmnhv")
+lifetime = 0.33
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_iq0nc")
-
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

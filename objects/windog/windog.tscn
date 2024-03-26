@@ -1,9 +1,10 @@
-[gd_scene load_steps=18 format=3 uid="uid://mwavbj3vc2nx"]
+[gd_scene load_steps=19 format=3 uid="uid://mwavbj3vc2nx"]
 
 [ext_resource type="Script" path="res://objects/windog/Windog.gd" id="1_033ox"]
 [ext_resource type="Texture2D" uid="uid://pjp14eycxe65" path="res://objects/windog/windog.png" id="2_kpgvp"]
 [ext_resource type="Script" path="res://scripts/components/Health.gd" id="3_epq32"]
 [ext_resource type="Script" path="res://scripts/components/Hitbox.gd" id="4_83m8f"]
+[ext_resource type="Script" path="res://scripts/components/queue_free_on_death.gd" id="4_qckuv"]
 [ext_resource type="Script" path="res://scripts/components/Hurtbox.gd" id="5_jssnb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m8jk2"]
@@ -72,7 +73,7 @@ size = Vector2(128, 32)
 size = Vector2(200, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tci3k"]
-size = Vector2(13, 8)
+size = Vector2(17, 8)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_82xy1"]
 size = Vector2(13, 5)
@@ -123,6 +124,13 @@ debug_color = Color(1, 0, 0.678431, 0)
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("3_epq32")
+max_health = 3.0
+starting_health = 3.0
+
+[node name="Node" type="Node" parent="Health" node_paths=PackedStringArray("health", "actor")]
+script = ExtResource("4_qckuv")
+health = NodePath("..")
+actor = NodePath("../..")
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 script = ExtResource("4_83m8f")

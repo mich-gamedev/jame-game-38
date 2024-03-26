@@ -1,3 +1,4 @@
+Node
 Hurtbox
 CollisionShape2D
 Hitbox
@@ -12,4 +13,3 @@ CanvasModulate
 MeshInstance3D
 Node3D
 Droppable
-Node
