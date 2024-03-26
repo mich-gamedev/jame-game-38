@@ -17,6 +17,7 @@ extends CharacterBody2D
 
 var jumping: bool = false
 var can_jump: bool = false
+var can_fire: bool = true
 
 func _ready():
 	PlayerStats.player_item = null
@@ -72,8 +73,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("action_1") and PlayerStats.player_has_wand:
-		pass
+	if event.is_action_pressed("action_1") and PlayerStats.player_has_wand and !PlayerStats.player_item and can_fire:
+		can_fire = false
+		var bullet: CharacterBody2D = preload("res://objects/player/smokes/basic.tscn").instantiate() as CharacterBody2D
+		get_tree().current_scene.add_child(bullet)
+		bullet.global_position = wand.global_position
+		bullet.velocity = wand.global_position.direction_to(get_global_mouse_position()) * 96
+		await get_tree().create_timer(0.3).timeout
+		can_fire = true
 
 func flip_tween(flip_to: int, time_sec: float) -> void:
 	var tween = create_tween()

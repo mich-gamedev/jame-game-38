@@ -1,3 +1,5 @@
+res://scripts/components
+res://objects/player/smokes
 res://objects/wand_collectible
 res://objects/windog
 E:/jame game 38/assets/sprites/windog
@@ -5,7 +7,6 @@ res://levels
 res://resources/tileset
 res://objects/floppy_disk
 res://scripts/singletons
-res://scripts/components
 res://objects/document
 res://objects/snail_explorer
 res://assets/sprites/snailexplorer

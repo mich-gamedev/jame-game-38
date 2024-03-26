@@ -1,7 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://mwavbj3vc2nx"]
+[gd_scene load_steps=18 format=3 uid="uid://mwavbj3vc2nx"]
 
 [ext_resource type="Script" path="res://objects/windog/Windog.gd" id="1_033ox"]
 [ext_resource type="Texture2D" uid="uid://pjp14eycxe65" path="res://objects/windog/windog.png" id="2_kpgvp"]
+[ext_resource type="Script" path="res://scripts/components/Health.gd" id="3_epq32"]
+[ext_resource type="Script" path="res://scripts/components/Hitbox.gd" id="4_83m8f"]
+[ext_resource type="Script" path="res://scripts/components/Hurtbox.gd" id="5_jssnb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m8jk2"]
 atlas = ExtResource("2_kpgvp")
@@ -68,7 +71,15 @@ size = Vector2(128, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5ilom"]
 size = Vector2(200, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tci3k"]
+size = Vector2(13, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_82xy1"]
+size = Vector2(13, 5)
+
 [node name="Windog" type="CharacterBody2D"]
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_033ox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -109,6 +120,26 @@ debug_color = Color(1, 0, 0.678431, 0)
 position = Vector2(0, -32)
 shape = SubResource("RectangleShape2D_5ilom")
 debug_color = Color(1, 0, 0.678431, 0)
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_epq32")
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("4_83m8f")
+health = NodePath("../Health")
+team = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0.5, -4)
+shape = SubResource("RectangleShape2D_tci3k")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("5_jssnb")
+team = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0.5, -2.5)
+shape = SubResource("RectangleShape2D_82xy1")
 
 [connection signal="body_entered" from="Enter" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="Exit" to="." method="_on_area_2d_body_exited"]

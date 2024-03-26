@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://ckfefbe2o1bca" path="res://objects/player/wand_1.png" id="4_k3phf"]
 
 [sub_resource type="Gradient" id="Gradient_lg3gt"]
-offsets = PackedFloat32Array(0, 0.2, 0.3, 0.7, 0.9, 1)
+offsets = PackedFloat32Array(0, 0.249123, 0.25614, 0.421053, 0.698246, 1)
 colors = PackedColorArray(0.819608, 0.878431, 0.819608, 1, 0.819608, 0.878431, 0.819608, 1, 0.498039, 0.8, 0.709804, 1, 0.498039, 0.8, 0.709804, 1, 0.317647, 0.360784, 0.360784, 1, 0.317647, 0.360784, 0.360784, 1)
-metadata/_snap_enabled = true
+metadata/_snap_count = 30
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_5m4p0"]
 gradient = SubResource("Gradient_lg3gt")

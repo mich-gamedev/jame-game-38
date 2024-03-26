@@ -1,6 +1,10 @@
-res://objects/windog/windog.tscn
-res://levels/2.tscn
+res://main.tscn
 res://resources/tileset/background.tres
 res://resources/tileset/main.tres
-res://Windog.gd
+res://objects/player/player.tscn
 res://objects/wand_collectible/wand_collectible.tscn
+res://levels/2.tscn
+res://levels/1.tscn
+res://objects/player/smokes/basic.tscn
+res://objects/windog/windog.tscn
+res://objects/player/smokes/basic.gd

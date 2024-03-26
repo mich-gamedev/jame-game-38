@@ -1,0 +1,60 @@
+[gd_scene load_steps=11 format=3 uid="uid://b6uoxldndck81"]
+
+[ext_resource type="Texture2D" uid="uid://nwbhjs3dt6pv" path="res://assets/particles/asterisk.png" id="1_bmnhv"]
+[ext_resource type="Script" path="res://objects/player/smokes/basic.gd" id="1_tuamd"]
+[ext_resource type="Script" path="res://scripts/components/Hurtbox.gd" id="2_ep7vv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uynd5"]
+radius = 5.0
+
+[sub_resource type="Gradient" id="Gradient_lg3gt"]
+offsets = PackedFloat32Array(0, 0.249123, 0.25614, 0.421053, 0.698246, 1)
+colors = PackedColorArray(0.819608, 0.878431, 0.819608, 1, 0.819608, 0.878431, 0.819608, 1, 0.498039, 0.8, 0.709804, 1, 0.498039, 0.8, 0.709804, 1, 0.317647, 0.360784, 0.360784, 1, 0.317647, 0.360784, 0.360784, 1)
+metadata/_snap_count = 30
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ltto8"]
+gradient = SubResource("Gradient_lg3gt")
+
+[sub_resource type="Curve" id="Curve_nklux"]
+_data = [Vector2(0, 0.519745), 0.0, 0.0, 0, 0, Vector2(0.0511182, 1), 0.0, -2.87077, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_d83b6"]
+curve = SubResource("Curve_nklux")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_47spn"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 1.0
+initial_velocity_max = 6.0
+angular_velocity_min = -15.0
+angular_velocity_max = 15.0
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_d83b6")
+color_ramp = SubResource("GradientTexture1D_ltto8")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iq0nc"]
+radius = 1.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_tuamd")
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_ep7vv")
+team = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_uynd5")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+process_mode = 1
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_47spn")
+texture = ExtResource("1_bmnhv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_iq0nc")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
