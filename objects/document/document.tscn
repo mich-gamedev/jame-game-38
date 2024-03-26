@@ -21,11 +21,11 @@ collision_mask = 4
 script = ExtResource("1_duln4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(8, 8)
+position = Vector2(0, -8)
 shape = SubResource("RectangleShape2D_vqm0r")
 
 [node name="Interactible" type="Area2D" parent="." node_paths=PackedStringArray("sprite")]
-position = Vector2(8, 8)
+position = Vector2(0, -8)
 script = ExtResource("2_b50bs")
 sprite = NodePath("../Sprite2D")
 
@@ -33,12 +33,12 @@ sprite = NodePath("../Sprite2D")
 shape = SubResource("CircleShape2D_pb5jp")
 
 [node name="Document" type="Sprite2D" parent="."]
-position = Vector2(8, 8)
+position = Vector2(0, -8)
 texture = ExtResource("1_2mhbw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(8, -5)
+position = Vector2(0, -22)
 texture = SubResource("AtlasTexture_1c8c0")
 
 [connection signal="input_event" from="Interactible" to="Interactible" method="_on_input_event"]

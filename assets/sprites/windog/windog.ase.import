@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cbbf3msg72gid"
+path="res://.godot/imported/windog.ase-ffbe46d4b803bfe2fe7a3aae01b49b72.res"
+
+[deps]
+
+source_file="res://assets/sprites/windog/windog.ase"
+dest_files=["res://.godot/imported/windog.ase-ffbe46d4b803bfe2fe7a3aae01b49b72.res"]
+
+[params]
+

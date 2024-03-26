@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 PlayerStats="*res://scripts/singletons/PlayerStats.gd"
 
+[debug]
+
+settings/stdout/print_fps=true
+
 [display]
 
 window/size/viewport_width=480
@@ -26,6 +30,7 @@ window/size/viewport_height=270
 window/size/initial_position_type=3
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"
+window/vsync/vsync_mode=0
 
 [editor_plugins]
 
@@ -60,5 +65,5 @@ action_1={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.317647, 0.360784, 0.360784, 1)

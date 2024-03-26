@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://de775few2hvl"
+path="res://.godot/imported/lavabubble.ase-461fed3f303d92f40ebff52aa9b4be28.res"
+
+[deps]
+
+source_file="res://assets/particles/lavabubble.ase"
+dest_files=["res://.godot/imported/lavabubble.ase-461fed3f303d92f40ebff52aa9b4be28.res"]
+
+[params]
+

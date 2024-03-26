@@ -1,8 +1,9 @@
-[gd_scene load_steps=25 format=3 uid="uid://dr61h3xvy4lbk"]
+[gd_scene load_steps=27 format=3 uid="uid://dr61h3xvy4lbk"]
 
 [ext_resource type="Texture2D" uid="uid://c4csxt2t2oqnq" path="res://assets/sprites/player/player.png" id="1_gqisq"]
 [ext_resource type="Script" path="res://objects/player/player.gd" id="1_tx0r1"]
 [ext_resource type="Texture2D" uid="uid://co7m3rnm5188v" path="res://assets/particles/hashtag.png" id="3_g8cts"]
+[ext_resource type="Texture2D" uid="uid://ckfefbe2o1bca" path="res://objects/player/wand_1.png" id="4_k3phf"]
 
 [sub_resource type="Gradient" id="Gradient_lg3gt"]
 offsets = PackedFloat32Array(0, 0.2, 0.3, 0.7, 0.9, 1)
@@ -159,11 +160,13 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mtbmg"]
 size = Vector2(6, 10)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_rl0ld"]
+radius = 5.0
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_tx0r1")
-speed = 132.0
 accel = 3000.0
 air_accel = 1280.0
 friction = 1500.0
@@ -198,6 +201,25 @@ metadata/_aseprite_wizard_interface_config_ = {
 "slice_section": true
 }
 
+[node name="Wand" type="Sprite2D" parent="AnimatedSprite2D"]
+visible = false
+texture_filter = 1
+position = Vector2(8.5, 3.5)
+texture = ExtResource("4_k3phf")
+offset = Vector2(-1, 1)
+metadata/_aseprite_wizard_config_ = {
+"i_mode": 1,
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "",
+"slice": "",
+"source": "res://assets/sprites/player/weapons/wand_1.ase"
+}
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -5)
 shape = SubResource("RectangleShape2D_mtbmg")
@@ -220,6 +242,15 @@ drag_vertical_enabled = true
 drag_left_margin = 0.1
 drag_right_margin = 0.1
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_rl0ld")
+
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_animation_finished"]
 [connection signal="timeout" from="CoyoteTimer" to="." method="_coyote_timeout"]
 [connection signal="timeout" from="BufferTimer" to="." method="_buffer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

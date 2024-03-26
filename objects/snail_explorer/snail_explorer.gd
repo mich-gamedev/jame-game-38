@@ -9,7 +9,10 @@ extends CharacterBody2D
 @onready var timer: Timer = $Timer
 
 var flipped = false
-var can_flip = true
+var can_flip = false
+
+func _ready():
+	can_flip = true
 
 func _physics_process(delta: float) -> void:
 	if !is_on_floor():
@@ -18,7 +21,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _floor_check(_body: Object) -> void:
-	if can_flip:
+	if can_flip and is_instance_valid(timer):
 		can_flip = false
 		timer.start()
 		flipped = !flipped

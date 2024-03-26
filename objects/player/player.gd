@@ -13,9 +13,14 @@ extends CharacterBody2D
 @onready var buffer_timer: Timer = $BufferTimer
 @onready var anim: AnimatedSprite2D = $AnimatedSprite2D
 @onready var particle: GPUParticles2D = $GPUParticles2D
+@onready var wand: Sprite2D = $AnimatedSprite2D/Wand
 
 var jumping: bool = false
-var can_jump: bool = true
+var can_jump: bool = false
+
+func _ready():
+	PlayerStats.player_item = null
+	wand.visible = PlayerStats.player_has_wand
 
 func _physics_process(delta: float) -> void:
 
@@ -62,9 +67,13 @@ func _physics_process(delta: float) -> void:
 	if PlayerStats.player_item and Input.is_action_just_pressed("action_1"):
 		var new_item = PlayerStats.player_item.instantiate()
 		get_tree().current_scene.add_child(new_item)
-		new_item.global_position = global_position + (Vector2.UP * 12)
+		new_item.global_position = global_position
 		new_item.drop()
 	move_and_slide()
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("action_1") and PlayerStats.player_has_wand:
+		pass
 
 func flip_tween(flip_to: int, time_sec: float) -> void:
 	var tween = create_tween()
@@ -84,3 +93,7 @@ func _animation_finished() -> void: # connected to $AnimatedSprite2D.animation_f
 		return
 	if anim.animation == &"fall_start":
 		anim.play(&"fall")
+
+
+func _on_area_2d_body_entered(body):
+	get_tree().reload_current_scene.call_deferred()

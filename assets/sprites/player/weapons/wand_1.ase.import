@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://uqegsh0wgel4"
+path="res://.godot/imported/wand_1.ase-d6cc694424edfd10f59e921ec203790d.res"
+
+[deps]
+
+source_file="res://assets/sprites/player/weapons/wand_1.ase"
+dest_files=["res://.godot/imported/wand_1.ase-d6cc694424edfd10f59e921ec203790d.res"]
+
+[params]
+
