@@ -1,11 +1,9 @@
-res://levels/3.tscn
+res://main.tscn
 res://resources/tileset/background.tres
 res://resources/tileset/main.tres
-res://main.tscn
-res://objects/discthulu/discthulu.tscn
 res://resources/shaders/HitFlash.tres
-res://objects/discthulu/Hitflash.gd
+res://resources/shaders/new_shader_material.tres
+res://levels/3.tscn
+res://objects/discthulu/discthulu.tscn
 res://objects/player/smokes/basic.tscn
 res://objects/windog/windog.tscn
-res://resources/shaders/new_shader_material.tres
-res://scripts/singletons/PlayerStats.gd
