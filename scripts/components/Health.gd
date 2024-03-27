@@ -9,7 +9,6 @@ enum Teams {Player, Enemy}
 @onready var health: float = starting_health
 
 signal damaged(amount)
-signal healed(amount)
 
 func damage(amount: float) -> float:
 	print("%s took damage" % owner.name)

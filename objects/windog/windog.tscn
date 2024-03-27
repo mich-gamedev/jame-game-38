@@ -1,11 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://mwavbj3vc2nx"]
+[gd_scene load_steps=21 format=3 uid="uid://mwavbj3vc2nx"]
 
 [ext_resource type="Script" path="res://objects/windog/Windog.gd" id="1_033ox"]
+[ext_resource type="Material" uid="uid://donkg2mtl58na" path="res://resources/shaders/new_shader_material.tres" id="2_eckrw"]
 [ext_resource type="Texture2D" uid="uid://pjp14eycxe65" path="res://objects/windog/windog.png" id="2_kpgvp"]
 [ext_resource type="Script" path="res://scripts/components/Health.gd" id="3_epq32"]
 [ext_resource type="Script" path="res://scripts/components/Hitbox.gd" id="4_83m8f"]
 [ext_resource type="Script" path="res://scripts/components/queue_free_on_death.gd" id="4_qckuv"]
 [ext_resource type="Script" path="res://scripts/components/Hurtbox.gd" id="5_jssnb"]
+[ext_resource type="Script" path="res://objects/discthulu/Hitflash.gd" id="6_ndaw5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_m8jk2"]
 atlas = ExtResource("2_kpgvp")
@@ -85,6 +87,7 @@ script = ExtResource("1_033ox")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = ExtResource("2_eckrw")
 position = Vector2(0, -6)
 sprite_frames = SubResource("SpriteFrames_2wyiw")
 animation = &"idle"
@@ -131,6 +134,11 @@ starting_health = 3.0
 script = ExtResource("4_qckuv")
 health = NodePath("..")
 actor = NodePath("../..")
+
+[node name="Hitflash" type="Node" parent="Health" node_paths=PackedStringArray("health", "actor")]
+script = ExtResource("6_ndaw5")
+health = NodePath("..")
+actor = NodePath("../../AnimatedSprite2D")
 
 [node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
 script = ExtResource("4_83m8f")
