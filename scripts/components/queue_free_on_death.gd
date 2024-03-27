@@ -1,4 +1,5 @@
 extends Node
+class_name QueueFreeDeath
 @export var health: Health
 @export var actor: Node
 

@@ -143,7 +143,6 @@ shape = SubResource("RectangleShape2D_tci3k")
 
 [node name="Hurtbox" type="Area2D" parent="."]
 script = ExtResource("5_jssnb")
-team = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 position = Vector2(0.5, -2.5)

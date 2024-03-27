@@ -37,7 +37,7 @@ color_ramp = SubResource("GradientTexture1D_ltto8")
 radius = 1.0
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
-collision_layer = 4
+collision_layer = 0
 collision_mask = 20
 script = ExtResource("1_tuamd")
 

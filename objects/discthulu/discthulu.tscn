@@ -1,0 +1,80 @@
+[gd_scene load_steps=12 format=3 uid="uid://d3lw3uu571ukn"]
+
+[ext_resource type="Script" path="res://objects/discthulu/eyeball.gd" id="1_33qqp"]
+[ext_resource type="Texture2D" uid="uid://gue8x7jrnapc" path="res://objects/discthulu/discthulu.png" id="2_h6t33"]
+[ext_resource type="Script" path="res://scripts/components/Health.gd" id="3_exysa"]
+[ext_resource type="Script" path="res://scripts/components/Hitbox.gd" id="4_qbnex"]
+[ext_resource type="Script" path="res://scripts/components/Hurtbox.gd" id="5_6q151"]
+[ext_resource type="Script" path="res://scripts/components/queue_free_on_death.gd" id="6_8yrd2"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppjhu"]
+atlas = ExtResource("2_h6t33")
+region = Rect2(0, 0, 14, 12)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lshdn"]
+atlas = ExtResource("2_h6t33")
+region = Rect2(14, 0, 14, 12)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yds63"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppjhu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lshdn")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_e6l8d"]
+radius = 5.09902
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rih4n"]
+radius = 8.0
+
+[node name="Discthulu" type="PathFollow2D"]
+rotates = false
+script = ExtResource("1_33qqp")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_yds63")
+autoplay = "default"
+metadata/_aseprite_wizard_config_ = {
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"slice": "",
+"source": "res://assets/sprites/eyeball/discthulu.ase"
+}
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("3_exysa")
+max_health = 2.0
+starting_health = 2.0
+
+[node name="Hitbox" type="Area2D" parent="." node_paths=PackedStringArray("health")]
+script = ExtResource("4_qbnex")
+health = NodePath("../Health")
+team = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_e6l8d")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+script = ExtResource("5_6q151")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_rih4n")
+
+[node name="QueueFreeDeath" type="Node" parent="." node_paths=PackedStringArray("health", "actor")]
+script = ExtResource("6_8yrd2")
+health = NodePath("../Health")
+actor = NodePath("..")
